@@ -25,7 +25,7 @@ class Board {
   constructor(pieces){
     this.pieces = pieces; 
     this.positions = [
-      [2,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0],
@@ -61,6 +61,10 @@ class Board {
     piece.renderMove(position)
   }
 
+  clearPosition(){
+    this.setPosition(position, POSITION_FREE);
+  }
+
   movePiece(from, to){
     if(this.isPositionFree(from)){
       throw new Error(`There is no piece in position ${from}`);
@@ -72,7 +76,6 @@ class Board {
     if(piece){
       piece.renderMove(to)
     }
-    this.setPosition(from, POSITION_USED)
   }
 
   getValidMoves(from){
