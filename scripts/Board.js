@@ -1,5 +1,5 @@
 const POSITION_FREE = 0;
-const POSITION_USED = 1;
+const POSITION_INVALID = 1;
 
 // interface IPiece = {
 //   id: number
@@ -61,8 +61,12 @@ class Board {
     piece.renderMove(position)
   }
 
-  clearPosition(){
+  clearPosition(position){
     this.setPosition(position, POSITION_FREE);
+  }
+
+  setPositionInvalid(position){
+    this.setPosition(position, POSITION_INVALID);
   }
 
   movePiece(from, to){
@@ -71,6 +75,8 @@ class Board {
     }
     const pieceId = this.getPosition(from)
     this.setPosition(to, pieceId)
+
+    this.clearPosition(from)
     
     const piece = this.pieces.find((p)=> p.id === pieceId);
     if(piece){
