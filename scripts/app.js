@@ -1,19 +1,8 @@
 import { Board, Pieces } from "./Board.js";
+import { placeMark, removeMark } from "./graphics.js";
 
 
-function placeMark(position){
-  const columns = ['a','b','c','d','e','f','g','h',]
-  const cellId = `#${columns[position[0]]}${8 - position[1]}`
-  const cell = document.querySelector(cellId);
-  cell.classList.add("marked");
-}
 
-function removeMark(position){
-  const columns = ['a','b','c','d','e','f','g','h',]
-  const cellId = `#${columns[position[0]]}${8 - position[1]}`
-  const cell = document.querySelector(cellId);
-  cell.classList.remove("marked");
-}
 
 const board = new Board([]);
 
