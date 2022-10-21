@@ -54,3 +54,16 @@
 .piece img {
   height: 1.7em; 
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+}
+
+.controls {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}

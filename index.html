@@ -10,7 +10,6 @@
 </head>
 <body>
   <div class="container">
-
     <table class="chess-board">
       <tbody>
           <tr>
@@ -118,13 +117,18 @@
     <div class="piece" id="knight">
       <img  src = "knight.svg" alt="Knight piece"/>
     </div>
-  </div>
+    <div class="controls">
+      <button id="test" >Start</button>
+      <div>
+        <label for="speed">Speed:</label>
+        <input type="range" min="1" max="100" value="50" class="slider" id="speed">
 
-  <button id="test" >move</button>
+      </div>
+    </div>
+  </div>
 
 </body>
 
-
-<script type="module" src="/scripts/app.js" ></script>
+<script type="module" src="/scripts/App.js" ></script>
 
 </html>
