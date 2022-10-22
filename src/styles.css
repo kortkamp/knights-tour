@@ -5,6 +5,10 @@
   font-size: 25px;
 }
 
+body {
+  background: #fbfbfb;
+}
+
 .container {
   position: relative
 }

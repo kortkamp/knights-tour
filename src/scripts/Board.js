@@ -70,6 +70,8 @@ class Board {
   }
 
   movePiece(from, to){
+    console.log(`Board: ${from[0]},${from[1]} to: ${to[0]},${to[1]}`)
+    
     if(this.isPositionFree(from)){
       throw new Error(`There is no piece in position ${from}`);
     }

@@ -1,0 +1,10 @@
+{
+  "name": "knights_tour",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "kortkamp <marcelusmedius@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.26.0"
+  }
+}
