@@ -13,12 +13,12 @@ const Pieces = {
   knight :{
     id: 2,
     renderMove: (position) => {
-      const piece = document.querySelector("#knight");
-      piece.style.transform=`translate(${position[0]*2}em,${position[1]*2}em)`
+      const piece = document.querySelector('#knight');
+      piece.style.transform=`translate(${position[0]*2}em,${position[1]*2}em)`;
     },
     moveSchema: [[1,-2],[2,-1],[2,1],[1,2],[-1,2],[-2,1],[-2,-1],[-1,-2]] 
   }
-}
+};
 
 class Board {
   
@@ -33,7 +33,7 @@ class Board {
       [0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0],
-    ]
+    ];
   }
 
   isValidPosition(position){
@@ -44,11 +44,11 @@ class Board {
   }
 
   getPosition(position){
-    return this.positions[position[0]][position[1]]
+    return this.positions[position[0]][position[1]];
   }
 
   setPosition(position, pieceId){
-    this.positions[position[0]][position[1]] = pieceId
+    this.positions[position[0]][position[1]] = pieceId;
   }
 
   isPositionFree(position){
@@ -56,9 +56,9 @@ class Board {
   }
 
   placePiece(position, piece){
-    this.pieces.push(piece)
+    this.pieces.push(piece);
     this.setPosition(position, piece.id);
-    piece.renderMove(position)
+    piece.renderMove(position);
   }
 
   clearPosition(position){
@@ -70,40 +70,40 @@ class Board {
   }
 
   movePiece(from, to){
-    console.log(`Board: ${from[0]},${from[1]} to: ${to[0]},${to[1]}`)
+    console.log(`Board: ${from[0]},${from[1]} to: ${to[0]},${to[1]}`);
     
     if(this.isPositionFree(from)){
       throw new Error(`There is no piece in position ${from}`);
     }
-    const pieceId = this.getPosition(from)
-    this.setPosition(to, pieceId)
+    const pieceId = this.getPosition(from);
+    this.setPosition(to, pieceId);
 
-    this.clearPosition(from)
+    this.clearPosition(from);
     
     const piece = this.pieces.find((p)=> p.id === pieceId);
     if(piece){
-      piece.renderMove(to)
+      piece.renderMove(to);
     }
   }
 
   getValidMoves(from){
 
-    const pieceId = this.getPosition(from)
+    const pieceId = this.getPosition(from);
     const piece = this.pieces.find((p)=> p.id === pieceId);
     if(!piece){
       throw new Error(`There is no piece in position ${from}`);
     }
-    const pieceMoves =  piece.moveSchema.map((schema)=> [ schema[0] + from[0], schema[1] + from[1] ])
-    const insideBoardMoves = pieceMoves.filter((position) => this.isValidPosition(position))
-    const validMoves = insideBoardMoves.filter((position) => this.isPositionFree(position))
+    const pieceMoves =  piece.moveSchema.map((schema)=> [ schema[0] + from[0], schema[1] + from[1] ]);
+    const insideBoardMoves = pieceMoves.filter((position) => this.isValidPosition(position));
+    const validMoves = insideBoardMoves.filter((position) => this.isPositionFree(position));
 
-    return validMoves
+    return validMoves;
   }
 
   showTable(){
-    console.table(this.positions)
+    console.table(this.positions);
   }
 
 }
 
-export { Board , Pieces }
+export { Board , Pieces };
