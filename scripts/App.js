@@ -1,6 +1,6 @@
-import { Board, Pieces } from "./Board.js";
-import { placeMark, removeMark } from "./graphics.js";
-import { shuffle } from "./strategies.js"
+import { Board, Pieces } from './Board.js';
+import { clearAllMarks, placeMark, removeMark } from './graphics.js';
+import { shuffle } from './strategies.js';
 
 
 let delay = 500;
@@ -11,14 +11,11 @@ let initialPosition;
 
 let running = false;
 
-function isRunning(){
-  return running;
-}
 
 function setSpeed(speed){
-  console.log(speed)
-  console.log(1000 - speed*10)
-  delay = 1000 - speed*10
+  console.log(speed);
+  console.log(1000 - speed*10);
+  delay = 1000 - speed*10;
 
   const piece = document.querySelector('.piece');
   piece.style.transition = `transform ${delay/1000}s`;
@@ -33,47 +30,42 @@ const wait = async (delay) =>
   );
 
 
-
 function initialize() {
-  initialPosition = [0,0]
+  initialPosition = [0,0];
   board = new Board([]);
   board.placePiece(initialPosition, Pieces.knight);
+  clearAllMarks();
 }
 
 
 async function tryMove(from, node){
- 
-
-  console.log(`>> new node ${node} ${from[0]},${from[1]} running ${isRunning()}`)
-  
+   
   const validMoves = board.getValidMoves(from);
 
   if(validMoves.length === 0) {
-    console.log('dead end found!')
+    console.log('dead end found!');
     return;
   }
 
   const preferencialMoves = validMoves;
   shuffle(preferencialMoves);
 
-  console.log(preferencialMoves)
   for(const move of preferencialMoves){
     placeMark(from);
     board.movePiece(from, move);
     initialPosition = move;
     board.setPositionInvalid(from);
     await wait(delay);
-    console.log(`  running ${isRunning()}`)
 
    
     await tryMove(move, node + 1); // create new node
     
     
     board.movePiece(move, from);
-    initialPosition = from
+    initialPosition = from;
 
     await wait(delay);
-    removeMark(from)
+    removeMark(from);
   }
 }
 
@@ -91,7 +83,6 @@ function start(){
 
 function stop(){
   running = false;
-  console.log('stop')
   let startButton = document.querySelector('#start');
   startButton.disabled = false;
   let stopButton = document.querySelector('#stop');
@@ -118,11 +109,11 @@ function setupControls() {
   
   let speedRange = document.querySelector('#speed');
   speedRange.addEventListener('mouseup', function (e) {
-    setSpeed(e.target.value)
+    setSpeed(e.target.value);
   });
 }
 
 
 initialize();
 setupControls();
-console.log('loaded!')
+console.log('loaded!');
