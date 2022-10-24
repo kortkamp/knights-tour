@@ -14,52 +14,60 @@ function getDistanceFromCenter(position) {
 }
 
 
-
-export const Rules = {
-  nearBorder : {
-    id: 1,
-    name: 'border',
-    action: (a,b)=> getDistanceFromCenter(b)-getDistanceFromCenter(a),
-  },
-  nearCenter : {
-    id: 2,
-    name: 'center',
-    action: (a,b)=> getDistanceFromCenter(a)-getDistanceFromCenter(b),
-  },
-  upperFirst : {
-    id: 3,
-    name: 'top',
-    action: (a,b)=> a[1]-b[1],
-  },
-  lowerFirst : {
-    id: 4,
-    name: 'bottom',
-    action: (a,b)=> b[1]-a[1],
-  },
-  leftFirst : {
-    id: 5,
-    name: 'left',
-    action:  (a,b)=> a[0]-b[0],
-  },
-  rightFirst : {
-    id: 6,
-    name: 'right',
-    action: (a,b)=> b[0]-a[0],
-  },
-  random: {
-    id: 7,
-    name: 'random',
-    action: ()=> Math.random() - 0.5,
-  }
-};
-
-
 export class Strategy {
   rules = [];
 
-  constructor(){
-
+  constructor(board, piece){
+    this.board = board;
+    this.piece = piece;
   }
+
+  modelRules = {
+    nearBorder : {
+      id: 1,
+      name: 'border',
+      action: (a,b)=> getDistanceFromCenter(b)-getDistanceFromCenter(a),
+    },
+    nearCenter : {
+      id: 2,
+      name: 'center',
+      action: (a,b)=> getDistanceFromCenter(a)-getDistanceFromCenter(b),
+    },
+    upperFirst : {
+      id: 3,
+      name: 'top',
+      action: (a,b)=> a[1]-b[1],
+    },
+    lowerFirst : {
+      id: 4,
+      name: 'bottom',
+      action: (a,b)=> b[1]-a[1],
+    },
+    leftFirst : {
+      id: 5,
+      name: 'left',
+      action:  (a,b)=> a[0]-b[0],
+    },
+    rightFirst : {
+      id: 6,
+      name: 'right',
+      action: (a,b)=> b[0]-a[0],
+    },
+    random: {
+      id: 7,
+      name: 'random',
+      action: ()=> Math.random() - 0.5,
+    },
+    warnsdorff: {
+      id: 8,
+      name: 'warnsdorff',
+      action: (a,b)=> {
+        const aMoves = this.board.getValidPieceMoves(a, this.piece).length;
+        const bMoves = this.board.getValidPieceMoves(b, this.piece).length;
+        return aMoves - bMoves;
+      }
+    }
+  };
 
   randomShuffle(array) {
     let currentIndex = array.length,  randomIndex;
@@ -76,6 +84,7 @@ export class Strategy {
   }
   
   addRule(rule){
+    console.log(rule);
     this.rules.push(rule);
   }
 

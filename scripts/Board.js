@@ -1,24 +1,7 @@
 const POSITION_FREE = 0;
 const POSITION_INVALID = 1;
 
-// interface IPiece = {
-//   id: number
-//   inGame: bool;
-//   color: string;
-//   moveSchema: {}
-//   move: ()=> void;
-// }
 
-const Pieces = {
-  knight :{
-    id: 2,
-    renderMove: (position) => {
-      const piece = document.querySelector('#knight');
-      piece.style.transform=`translate(${position[0]*2}em,${position[1]*2}em)`;
-    },
-    moveSchema: [[1,-2],[2,-1],[2,1],[1,2],[-1,2],[-2,1],[-2,-1],[-1,-2]] 
-  }
-};
 
 class Board {
   
@@ -70,7 +53,7 @@ class Board {
   }
 
   movePiece(from, to){
-    console.log(`Board: ${from[0]},${from[1]} to: ${to[0]},${to[1]}`);
+    // console.log(`Board: ${from[0]},${from[1]} to: ${to[0]},${to[1]}`);
     
     if(this.isPositionFree(from)){
       throw new Error(`There is no piece in position ${from}`);
@@ -86,24 +69,54 @@ class Board {
     }
   }
 
-  getValidMoves(from){
+  getPieceMovesFrom(from, piece){
+    const pieceMoves =  piece.moveSchema.map((schema)=> [ schema[0] + from[0], schema[1] + from[1] ]);
+    const insideBoardMoves = pieceMoves.filter((position) => this.isValidPosition(position));
+    return insideBoardMoves;
+  }
 
+  getValidPieceMoves(from, piece){
+    const pieceMoves = this.getPieceMovesFrom(from, piece);
+    const freeMoves = pieceMoves.filter((position) => this.isPositionFree(position));
+    return freeMoves;
+  }
+
+  getValidMovesFrom(from){
     const pieceId = this.getPosition(from);
     const piece = this.pieces.find((p)=> p.id === pieceId);
     if(!piece){
       throw new Error(`There is no piece in position ${from}`);
     }
-    const pieceMoves =  piece.moveSchema.map((schema)=> [ schema[0] + from[0], schema[1] + from[1] ]);
-    const insideBoardMoves = pieceMoves.filter((position) => this.isValidPosition(position));
-    const validMoves = insideBoardMoves.filter((position) => this.isPositionFree(position));
+    return this.getValidPieceMoves(from, piece);
+  }
 
-    return validMoves;
+  getWarnsdorffMoves(from, piece){
+    const moves = this.getValidPieceMoves(from, piece);
+  
+    const warnsdorffMoves = moves.sort((a,b)=> {
+      const aMoves = this.getValidPieceMoves(a, piece).length;
+      const bMoves = this.getValidPieceMoves(b, piece).length;
+      return aMoves - bMoves;
+    });
+    return warnsdorffMoves;
   }
 
   showTable(){
     console.table(this.positions);
   }
 
+  isBoardFull(){
+    for(const row of this.positions){
+      for(const cell of row){
+        if(cell === POSITION_FREE)
+        {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
 }
 
-export { Board , Pieces };
+export { Board  };
