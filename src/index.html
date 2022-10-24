@@ -114,18 +114,101 @@
       </tbody>
       
     </table>
-    <div class="piece" id="knight">
-      <img  src = "knight.svg" alt="Knight piece"/>
+    <svg class="path"></svg>
+    <div class="piece" id="knight" >
+      <img  src = "./assets/knight.svg" alt="Knight piece" draggable="false"/>
     </div>
     <div class="controls">
-      <button id="start" >Start</button>
-      <button id="stop" >Stop</button>
-      <button id="clear" >Clear</button>
-      <button id="test" >Test</button>
-      <div>
+      <div class="run-control">
+        <button id="start" >Start</button>
+        <button id="stop" >Stop</button>
+        <button id="clear" >Clear</button>
+        <!-- <button id="test" >Test</button> -->
+      </div>
+      <div class="speed-control">
         <label for="speed">Speed:</label>
         <input type="range" min="1" max="100" value="50" class="slider" id="speed">
+      </div>
 
+      <label for="strategy">Strategies:</label>
+      <div class="strategy">
+        <div class="strategy-control">
+          <div class="strategy-selector">
+           
+            <label for = "random-selector">
+              <input type = "checkbox" id="random-selector">
+              <img  src = "./assets/dice.svg" alt="Random" title="Random Strategy"/>
+            </label>     
+          </div>
+          <div class="strategy-selector">
+            <label for="outer-selector">
+              <input type = "checkbox" id="outer-selector">
+              <img  src = "./assets/expand.svg" alt="Near border" title="Borders Strategy"/>
+            </label>
+          </div>
+          <div class="strategy-selector">
+            
+            <label for = "inner-selector">
+              <input type = "checkbox" id="inner-selector">
+              <img  src = "./assets/shrink.svg" alt="Near Center" title="Center Strategy"/>
+            </label>
+          </div>
+          <div class="strategy-selector">
+            
+            <label for = "left-selector">
+              <input type = "checkbox" id="left-selector">
+              <img  src = "./assets/arrow-left.svg" alt="Left" title="Left Strategy"/>
+            </label>
+          </div>
+          <div class="strategy-selector">
+            
+            <label for = "right-selector">
+              <input type = "checkbox" id="right-selector">
+              <img  src = "./assets/arrow-right.svg" alt="Right" title="Right Strategy"/>
+            </label>
+          </div>
+          <div class="strategy-selector">
+            
+            <label for = "upper-selector">
+              <input type = "checkbox" id="upper-selector">
+              <img  src = "./assets/arrow-up.svg" alt="Up" title="Top Strategy"/>
+            </label>
+          </div>
+          <div class="strategy-selector">
+            
+            <label for = "lower-selector">
+              <input type = "checkbox" id="lower-selector">
+              <img  src = "./assets/arrow-down.svg" alt="Down" title="Bottom Strategy"/>
+            </label>
+          </div>
+          <div class="strategy-selector"> 
+            <label for = "warnsdorff-selector">
+              <input type = "checkbox" id="warnsdorff-selector">
+              <img  src = "./assets/w-letter.svg" alt="Down" title="Warnsdorff Strategy"/>
+            </label>
+          </div>
+        </div>
+        <div class="strategy-indicator">
+        </div>
+      </div>
+      <div class="stats">
+        <div class="numeric-stats">
+          <div>
+            <label for="speed-indicator">speed:</label>
+            <span id="speed-indicator">0.00</span>
+          </div>
+          <div>
+            <label for="moves-number">moves:</label>
+            <span id="moves-number">0</span>
+          </div>
+          <div>
+            <label for="dead-ends-number">dead ends:</label>
+            <span id="dead-ends-number">0</span>
+          </div>
+        </div>
+        <div class="grafic-stats">
+
+        </div>
       </div>
     </div>
   </div>

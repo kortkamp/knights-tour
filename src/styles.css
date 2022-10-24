@@ -3,22 +3,27 @@
   padding: 0;
   /* margin: 0; */
   font-size: 25px;
+  font-family: sans-serif;
+
 }
 
 body {
   background: #fbfbfb;
 }
 
-.container {
-  position: relative
-}
 
-.chess-board { border-spacing: 0; border-collapse: collapse;  }
+.chess-board {
+  border-spacing: 0; 
+  border-collapse: collapse; 
+  width: 18em; 
+  height: 18em; 
+}
 .chess-board th {  width: 2em; height: 2em;}
 .chess-board td { 
   border: 1px solid; 
   width: 2em; 
   height: 2em; 
+ 
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -47,12 +52,12 @@ body {
 }
 
 .marked::after {
-  content: ".";
-  font-size: 5em;
+  content: "\25CF";
+  font-size: 1.2em;
   line-height: 0;
   position: absolute;
-  left: 20%;
-  top: -20%;
+  left: 30%;
+  top: 45%;
 }
 
 .piece img {
@@ -60,9 +65,16 @@ body {
 }
 
 .container {
+  position: relative;
   display: flex;
-  flex-direction: row;
   gap: 3em;
+}
+
+@media only screen and (max-width: 600px) {
+  container {
+  flex-direction: column;
+
+  }
 }
 
 .controls {
@@ -70,4 +82,95 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  width: 12em;
+}
+
+.run-control {
+  display: flex;
+  justify-content: space-between;
+}
+
+.run-control button {
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+
+}
+
+.speed-control {
+  display: flex;
+}
+
+.speed-control input {
+  flex: 1;
+}
+
+
+.strategy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.strategy-control {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 0.5em;
+  flex: 1;
+
+
+}
+.strategy-indicator {
+  flex: 1;
+  font-size: 0.8em;
+  font-weight: bold;
+
+}
+
+.strategy-selector img {
+  height: 1.5em;
+  width: 1.5em;
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.strategy-selector img:hover {
+  /* height: 1.9em; */
+  /* height: 1.6em; */
+  opacity: 0.6;
+}
+
+:checked + img {
+  /* height: 1.9em; */
+  
+  /* height: 4.9em; */
+  opacity: 1 !important;
+}
+
+:checked + span {
+  font-weight: bold;
+}
+/* .strategy-selector img:active {
+  height: 1em;
+  fill: red;
+} */
+
+
+.strategy-selector input {
+  display: none;
+}
+
+
+polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke: rgba(0,0,0,0.9);
+}
+.path {
+  position: absolute;
+  top: 3em;
+  left: 3em;
+  width:16em;
+  height:16em;
 }

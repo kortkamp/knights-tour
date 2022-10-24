@@ -4,7 +4,12 @@
   "main": "index.js",
   "author": "kortkamp <marcelusmedius@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "yarn livereload -d -p 8000 ./src"
+  },
   "devDependencies": {
-    "eslint": "^8.26.0"
-  }
+    "eslint": "^8.26.0",
+    "livereload": "^0.9.3"
+  },
+  "dependencies": {}
 }
