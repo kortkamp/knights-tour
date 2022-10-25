@@ -9,6 +9,13 @@
 
 body {
   background: #fbfbfb;
+  margin: 0 auto;
+
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2em;
 }
 
 
@@ -28,6 +35,18 @@ body {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   position: relative;
+  /* opacity: 1 !important; */
+  transition: all 1s;
+
+}
+.cell-hide {
+  /* transform: translate(0em ,-25em);
+  transition: 0.2s transform; */
+  pointer-events: none;
+}
+.line-hide {
+  transform: translate(0em ,25em);
+  transition: 0.2s transform;
 }
 .chess-board .light { background: #eee; }
 .chess-board .dark { background: #999; }
@@ -56,33 +75,48 @@ body {
   font-size: 1.2em;
   line-height: 0;
   position: absolute;
-  left: 30%;
-  top: 45%;
+  left: 33%;
+  top: 47%;
 }
 
 .piece img {
   height: 1.7em; 
 }
 
-.container {
+body {}
+
+.table-container {
   position: relative;
+  /* margin: 0 auto; */
+  margin-right: 2em;
+
+}
+
+.container {
+  /* width: 35em; */
+  justify-content: center;
   display: flex;
-  gap: 3em;
+  gap: 0em;
+  margin: 0 auto;
+  flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 600px) {
-  .container {
-    flex-direction: column;
 
-  }
-}
 
 .controls {
-  margin-top: 2em;
+  margin: 2em;
+ 
   display: flex;
   flex-direction: column;
   gap: 1em;
   width: 12em;
+}
+
+@media only screen and (max-width: 900px) {
+  .controls {
+    margin-top: 0;
+    font-size: 30px;
+  }
 }
 
 .run-control {
@@ -91,9 +125,13 @@ body {
 }
 
 .run-control button {
-  padding: 0.1em 0.3em;
+  padding: 0.1em 0.6em;
   border-radius: 4px;
+  transition: all 0.5;
+}
 
+.run-control button.hide {
+  display: none;
 }
 
 .speed-control {
@@ -173,4 +211,28 @@ polyline {
   left: 3em;
   width:16em;
   height:16em;
+}
+
+
+.solution {
+  margin-left: 2em;
+  width: 16em;
+  text-align: center;
+  transform: translate(0em ,-30em);
+  transition: 0.2s transform;
+}
+
+.solution-list {
+  width: 17em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.solution-list span{
+  font-size: 0.9em;
+  width: 1.5em;
+}
+
+.solution-found {
+  transform: translate(0em ,0em);
 }

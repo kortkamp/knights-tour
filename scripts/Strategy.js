@@ -84,7 +84,6 @@ export class Strategy {
   }
   
   addRule(rule){
-    console.log(rule);
     this.rules.push(rule);
   }
 
