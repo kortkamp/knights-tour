@@ -9,119 +9,129 @@
   
 </head>
 <body>
+  <header>
+    <h1>Knight's Tour Solver</h1>
+  </header>
   <div class="container">
-    <table class="chess-board">
-      <tbody>
-          <tr>
-            <th></th>
-            <th>a</th>
-            <th>b</th>
-            <th>c</th>
-            <th>d</th>
-            <th>e</th>
-            <th>f</th>
-            <th>g</th>
-            <th>h</th>
-          </tr>
-          <tr>
-            <th>8</th>
-            <td id="a8" class="light"></td>
-            <td id="b8" class="dark"></td>
-            <td id="c8"  class="light"></td>
-            <td id="d8" class="dark"></td>
-            <td id="e8" class="light"></td>
-            <td id="f8" class="dark"></td>
-            <td id="g8" class="light"></td>
-            <td id="h8" class="dark"></td>
-          </tr>
-          <tr>
-            <th>7</th>
-            <td id="a7" class="dark"></td>
-            <td id="b7" class="light"></td>
-            <td id="c7" class="dark"></td>
-            <td id="d7" class="light"></td>
-            <td id="e7" class="dark"></td>
-            <td id="f7" class="light"></td>
-            <td id="g7" class="dark"></td>
-            <td id="h7" class="light"></td>
-          </tr>
-          <tr>
-            <th>6</th>
-            <td id="a6" class="light"></td>
-            <td id="b6" class="dark"></td>
-            <td id="c6"  class="light"></td>
-            <td id="d6" class="dark"></td>
-            <td id="e6" class="light"></td>
-            <td id="f6" class="dark"></td>
-            <td id="g6" class="light"></td>
-            <td id="h6" class="dark"></td>
-          </tr>
-          <tr>
-            <th>5</th>
-            <td id="a5" class="dark"></td>
-            <td id="b5" class="light"></td>
-            <td id="c5" class="dark"></td>
-            <td id="d5" class="light"></td>
-            <td id="e5" class="dark"></td>
-            <td id="f5" class="light"></td>
-            <td id="g5" class="dark"></td>
-            <td id="h5" class="light"></td>
-          </tr>
-          <tr>
-            <th>4</th>
-            <td id="a4" class="light"></td>
-            <td id="b4" class="dark"></td>
-            <td id="c4"  class="light"></td>
-            <td id="d4" class="dark"></td>
-            <td id="e4" class="light"></td>
-            <td id="f4" class="dark"></td>
-            <td id="g4" class="light"></td>
-            <td id="h4" class="dark"></td>
-          </tr>
-          <tr>
-            <th>3</th>
-            <td id="a3" class="dark"></td>
-            <td id="b3" class="light"></td>
-            <td id="c3" class="dark"></td>
-            <td id="d3" class="light"></td>
-            <td id="e3" class="dark"></td>
-            <td id="f3" class="light"></td>
-            <td id="g3" class="dark"></td>
-            <td id="h3" class="light"></td>
-          </tr>
-          <tr>
-            <th>2</th>
-            <td id="a2" class="light"></td>
-            <td id="b2" class="dark"></td>
-            <td id="c2"  class="light"></td>
-            <td id="d2" class="dark"></td>
-            <td id="e2" class="light"></td>
-            <td id="f2" class="dark"></td>
-            <td id="g2" class="light"></td>
-            <td id="h2" class="dark"></td>
-          </tr>
-          <tr>
-            <th>1</th>
-            <td id="a1" class="dark"></td>
-            <td id="b1" class="light"></td>
-            <td id="c1" class="dark"></td>
-            <td id="d1" class="light"></td>
-            <td id="e1" class="dark"></td>
-            <td id="f1" class="light"></td>
-            <td id="g1" class="dark"></td>
-            <td id="h1" class="light"></td>
-          </tr>
-      </tbody>
-      
-    </table>
-    <svg class="path"></svg>
-    <div class="piece" id="knight" >
-      <img  src = "./assets/knight.svg" alt="Knight piece" draggable="false"/>
+    <div class="table-container">
+      <table class="chess-board">
+        <tbody>
+            <tr>
+              <th></th>
+              <th>a</th>
+              <th>b</th>
+              <th>c</th>
+              <th>d</th>
+              <th>e</th>
+              <th>f</th>
+              <th>g</th>
+              <th>h</th>
+            </tr>
+            <tr>
+              <th>8</th>
+              <td id="a8" class="light"></td>
+              <td id="b8" class="dark"></td>
+              <td id="c8"  class="light"></td>
+              <td id="d8" class="dark"></td>
+              <td id="e8" class="light"></td>
+              <td id="f8" class="dark"></td>
+              <td id="g8" class="light"></td>
+              <td id="h8" class="dark"></td>
+            </tr>
+            <tr>
+              <th>7</th>
+              <td id="a7" class="dark"></td>
+              <td id="b7" class="light"></td>
+              <td id="c7" class="dark"></td>
+              <td id="d7" class="light"></td>
+              <td id="e7" class="dark"></td>
+              <td id="f7" class="light"></td>
+              <td id="g7" class="dark"></td>
+              <td id="h7" class="light"></td>
+            </tr>
+            <tr>
+              <th>6</th>
+              <td id="a6" class="light"></td>
+              <td id="b6" class="dark"></td>
+              <td id="c6"  class="light"></td>
+              <td id="d6" class="dark"></td>
+              <td id="e6" class="light"></td>
+              <td id="f6" class="dark"></td>
+              <td id="g6" class="light"></td>
+              <td id="h6" class="dark"></td>
+            </tr>
+            <tr>
+              <th>5</th>
+              <td id="a5" class="dark"></td>
+              <td id="b5" class="light"></td>
+              <td id="c5" class="dark"></td>
+              <td id="d5" class="light"></td>
+              <td id="e5" class="dark"></td>
+              <td id="f5" class="light"></td>
+              <td id="g5" class="dark"></td>
+              <td id="h5" class="light"></td>
+            </tr>
+            <tr>
+              <th>4</th>
+              <td id="a4" class="light"></td>
+              <td id="b4" class="dark"></td>
+              <td id="c4"  class="light"></td>
+              <td id="d4" class="dark"></td>
+              <td id="e4" class="light"></td>
+              <td id="f4" class="dark"></td>
+              <td id="g4" class="light"></td>
+              <td id="h4" class="dark"></td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td id="a3" class="dark"></td>
+              <td id="b3" class="light"></td>
+              <td id="c3" class="dark"></td>
+              <td id="d3" class="light"></td>
+              <td id="e3" class="dark"></td>
+              <td id="f3" class="light"></td>
+              <td id="g3" class="dark"></td>
+              <td id="h3" class="light"></td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td id="a2" class="light"></td>
+              <td id="b2" class="dark"></td>
+              <td id="c2"  class="light"></td>
+              <td id="d2" class="dark"></td>
+              <td id="e2" class="light"></td>
+              <td id="f2" class="dark"></td>
+              <td id="g2" class="light"></td>
+              <td id="h2" class="dark"></td>
+            </tr>
+            <tr>
+              <th>1</th>
+              <td id="a1" class="dark"></td>
+              <td id="b1" class="light"></td>
+              <td id="c1" class="dark"></td>
+              <td id="d1" class="light"></td>
+              <td id="e1" class="dark"></td>
+              <td id="f1" class="light"></td>
+              <td id="g1" class="dark"></td>
+              <td id="h1" class="light"></td>
+            </tr>
+        </tbody>
+        
+      </table>
+      <div class="solution">
+        <h1>Solution Found!</h1>
+        <p class="solution-list"></p>
+      </div>
+      <svg class="path"></svg>
+      <div class="piece" id="knight" >
+        <img  src = "./assets/knight.svg" alt="Knight piece" draggable="false"/>
+      </div>
     </div>
     <div class="controls">
       <div class="run-control">
         <button id="start" >Start</button>
         <button id="stop" >Stop</button>
+        <button id="show-solution" class="hide" >Show Solution</button>
         <button id="clear" >Clear</button>
         <!-- <button id="test" >Test</button> -->
       </div>
@@ -130,7 +140,7 @@
         <input type="range" min="1" max="100" value="50" class="slider" id="speed">
       </div>
 
-      <label for="strategy">Strategies:</label>
+      <label for="strategy">Choose Strategies:</label>
       <div class="strategy">
         <div class="strategy-control">
           <div class="strategy-selector">

@@ -31,6 +31,7 @@ class Board {
   }
 
   setPosition(position, pieceId){
+    // console.log(position);
     this.positions[position[0]][position[1]] = pieceId;
   }
 
